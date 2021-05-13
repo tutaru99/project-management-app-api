@@ -1,7 +1,7 @@
 # project-management-app-api
 ```
-```
 npm run api
+```
 ```
 .env
 API_PORT=3000
