@@ -1,4 +1,3 @@
-// const { locale } = require('element-plus');
 const Joi = require('joi');
 
 const registerValidation = (data) => {
