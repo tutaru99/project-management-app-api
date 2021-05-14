@@ -16,35 +16,12 @@ const yaml = require('yamljs');
 const swaggerDefinition = yaml.load('./swagger.yaml');
 app.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 
-const validOrigins = [
-  `http://localhost:8080`,
-  'https://sn-project-management-app.herokuapp.com'];
 
-
-  const config = {
-    // ...
-    cors: {
-      // ...
-      origin: verifyOrigin,
-    },
-  };
-
-  app.use(cors(config.cors));
-
-  function verifyOrigin(ctx) {
-    const origin = ctx.headers.origin;
-    if (!originIsValid(origin)) return false;
-    return origin;
-  }
-
-  function originIsValid(origin) {
-    return validOrigins.indexOf(origin) != -1;
-  }
-
-// app.use(cors({
-//   origin: 'http://localhost:8080',
-//   credentials: true
-// }));
+app.use(cors(
+  // {
+  // origin: 'http://localhost:8080',
+  // credentials: true }
+  ));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
