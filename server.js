@@ -7,7 +7,11 @@ require('./config/passport.js');
 const authRoutes = require("./routes/auth.js");
 
 const app = express();
-
+const corsConfig = {
+  credentials: true,
+  origin: true,
+};
+app.use(cors(corsConfig));
 //swagger dependencies
 const swaggerUi = require('swagger-ui-express');
 const yaml = require('yamljs');
@@ -17,12 +21,17 @@ const swaggerDefinition = yaml.load('./swagger.yaml');
 app.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 
 
-app.use(
-  cors({
-    origin: "https://sn-project-management-app.herokuapp.com",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://sn-project-management-app.herokuapp.com/",
+//     credentials: true,
+//   })
+// );
+// app.use(cors(
+//   {
+//   origin: 'http://localhost:8080',
+//   credentials: true }
+//   ));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
