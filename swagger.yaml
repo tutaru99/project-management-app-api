@@ -6,7 +6,7 @@ info:
 servers:
   - url: http://localhost:3000/api/ # Local webserver location
     description: Localhost Development Server
-  - url: https://project-management-app-api.herokuapp.com//api/ # Live webserver location
+  - url: https://project-management-app-api.herokuapp.com/api/ # Live webserver location
     description: Live Development Server
 components:
   securitySchemes:
