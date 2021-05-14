@@ -4,7 +4,7 @@
   "main": "server.js",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "api": "nodemon server.js"
   },
   "dependencies": {
