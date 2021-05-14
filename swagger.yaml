@@ -73,7 +73,7 @@ tags:
   description: "Operations regarding the Access of application"
   externalDocs:
     description: "Front-End"
-    url: "http://swagger.io"
+    url: "https://sn-project-management-app.herokuapp.com"
 - name: "Project"
   description: "Operations regarding Projects"
 - name: "List"
