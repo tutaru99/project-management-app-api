@@ -17,11 +17,12 @@ const swaggerDefinition = yaml.load('./swagger.yaml');
 app.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
 
 
-app.use(cors(
-  // {
-  // origin: 'http://localhost:8080',
-  // credentials: true }
-  ));
+app.use(
+  cors({
+    origin: "https://sn-project-management-app.herokuapp.com",
+    credentials: true,
+  })
+);
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
