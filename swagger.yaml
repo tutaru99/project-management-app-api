@@ -70,14 +70,14 @@ components:
           type: string
 tags:
 - name: "Access"
-  description: "Operations regarding the Access of application"
+  description: "Operations regarding Access of the Project Management Application"
   externalDocs:
     description: "Front-End"
     url: "https://sn-project-management-app.herokuapp.com"
 - name: "Project"
   description: "Operations regarding Projects"
 - name: "List"
-  description: "Operations regarding Lists"
+  description: "Operations regarding Lists (Columns)"
 - name: "Task"
   description: "Operations regarding Tasks"
 
@@ -110,7 +110,7 @@ paths:
     post:
       tags:
       - "Access"
-      summary: Login a User
+      summary: Login with existing User
       description: Login a User in order to get JWT token (auth-token)
       requestBody:
         required: true
