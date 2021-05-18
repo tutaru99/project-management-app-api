@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "api": "nodemon server.js",
-    "test": "mocha \"./**/*.test.js\""
+    "test": "mocha \"./**/*.test.js\" --exit"
   },
   "dependencies": {
     "axios": "^0.21.1",
