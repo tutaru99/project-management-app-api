@@ -12,6 +12,4 @@ DB_PASS = **********
 
 HEROKU_API_KEY = ***************************
 HEROKU_APP_NAME = project-management-app-api
-
-
 ```
