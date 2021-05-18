@@ -15,7 +15,7 @@ module.exports = (app, passport) => {
   var router = require("express").Router();
 
   // Create a new Project
-  router.post("/", jsonParser, projects.create);
+  router.post("/", passport.authenticate('jwt', {session: false}), jsonParser, projects.create);
 
   // Retrieve all Projects by Condition
 /*   router.get("/completed",  projects.findAllCompleted); */

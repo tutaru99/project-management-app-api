@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
   const emailExist = await user.findOne({ email: req.body.email });
 
   if (emailExist) {
-    return res.status(400).json({ error: "Email already eists" });
+    return res.status(400).json({ error: "Email already exists" });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -112,4 +112,10 @@ exports.changePassword = async (req, res) => {
     userData.save()
     return res.status(200).send({ message: 'Password changed' })
   }
+}
+
+exports.deleteUser = async (req, res) => {
+  await user.deleteOne({ "email": req.body.email}).then(() => {
+    res.status(200).send({ message: 'User deleted'})
+  })
 }

@@ -64,3 +64,4 @@ db.mongoose
   });
 
 require("./routes/project.routes.js")(app, passport);
+module.exports = app;

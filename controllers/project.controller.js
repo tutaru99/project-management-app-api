@@ -50,26 +50,26 @@ exports.findAll = (req, res) => {
                     err.message || "Some error occurred while retrieving Projects."
             });
         });
-    };
+};
 
 // Retrieve all Projects that a user is invited to.
 exports.findAllInvited = (req, res) => {
     project.find({
         'users': ObjectId(req.user._id)
     }).populate({ path: 'users', select: ['username', 'email'] })
-         .then(data => {
-             res.send(data);
-         })
-         .catch(err => {
-             res.status(500).send({
-                 message:
-                     err.message || "Some error occurred while retrieving Projects."
-             });
-         });
- 
- };
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Projects."
+            });
+        });
 
- // Add a user to a project
+};
+
+// Add a user to a project
 exports.addUser = async (req, res) => {
     var error;
 
@@ -106,7 +106,7 @@ exports.addUser = async (req, res) => {
                         return res.status(400).send({ message: 'User is already added' })
                     }
                 }
-            } 
+            }
         })
         .catch((err) => {
             error = true
@@ -146,7 +146,7 @@ exports.addUser = async (req, res) => {
     }
 };
 
- //change user permissions for a project
+//change user permissions for a project
 exports.changeUserPermissionForProject = async (req, res) => {
     if (req.headers.role === 'OWNER' || req.headers.role === 'ADMIN') {
         project.updateOne(
@@ -181,9 +181,9 @@ exports.removeUser = async (req, res) => {
     project.updateOne(
         { '_id': ObjectId(req.body.projectId) },
         {
-            $pull: { 
-                'users': ObjectId(foundUser._id), 
-                'userRoles': {'userId': ObjectId(foundUser._id) }
+            $pull: {
+                'users': ObjectId(foundUser._id),
+                'userRoles': { 'userId': ObjectId(foundUser._id) }
             },
         }
     ).then(result => {
@@ -513,7 +513,7 @@ exports.moveTask = async (req, res) => {
         }
     }
     newProjectData.save().then(() => {
-        return res.status(200).send({message: 'Task moved!'})
+        return res.status(200).send({ message: 'Task moved!' })
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while MOVING TASK"
@@ -525,13 +525,13 @@ exports.moveTask = async (req, res) => {
 exports.moveTaskSameColumn = async (req, res) => {
 
     const projectData = await project.findById(req.body.projectId)
-     for await (const column of projectData.columns) {
+    for await (const column of projectData.columns) {
         if (column._id.equals(req.params.columnId)) {
             column.tasks = req.body.tasks
         }
     }
     projectData.save().then(() => {
-        return res.status(200).send({message: 'Task moved!'})
+        return res.status(200).send({ message: 'Task moved!' })
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while MOVING TASK"
@@ -569,20 +569,26 @@ exports.deleteColumn = (req, res) => {
 exports.addColumn = (req, res) => {
     const id = req.params.id;
 
-    project.update({ "_id": mongoose.Types.ObjectId(id) },
+    project.findByIdAndUpdate({ "_id": mongoose.Types.ObjectId(id) },
         {
             $push: {
                 "columns": {
                     "col_name": req.body.col_name
                 }
             }
+        },
+        {
+            new: true
         })
         .then(data => {
             if (!data) {
                 res.status(404).send({
                     message: `Cannot add Column with id=${id}.`
                 });
-            } else res.send({ message: "Column was ADDED successfully!" });
+            } else res.send({
+                message: "Column was ADDED successfully!",
+                _id: data._id
+            });
         })
         .catch(err => {
             res.status(500).send({

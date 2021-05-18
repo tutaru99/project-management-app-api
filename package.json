@@ -5,12 +5,15 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "api": "nodemon server.js"
+    "api": "nodemon server.js",
+    "test": "mocha \"./**/*.test.js\""
   },
   "dependencies": {
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -23,5 +26,8 @@
     "passport-local": "^1.0.0",
     "swagger-ui-express": "^4.1.6",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.4.0"
   }
 }
