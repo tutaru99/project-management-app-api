@@ -31,7 +31,8 @@ jobs:
         env:
           privateKey: ${{ secrets.TOKEN_SECRET }}
           publicKey: ${{ secrets.JWT_EXPIRES_IN }}
-
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
 
 
   deploy:
