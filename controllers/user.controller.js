@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
         });
       }
       
-      req.login(user, { session: false }, (err) => {
+      req.login(user, { session: false }, async (err) => {
         if (err) {
           res.send(err);
         }
@@ -62,7 +62,16 @@ exports.login = async (req, res) => {
           }
         );
 
-        res.status(200).send({ username: user.username, id: user._id, token });
+        await db.users
+          .findById(user._id)
+          .then((result) => {
+            const email = result.email;
+            res.status(200).send({ username: user.username, id: user._id, token, email });
+          })
+          .catch((error) => {
+            console.log(error);
+            res.status(400).json('Unexpected error');
+          });
       });
     }
   )(req, res);
