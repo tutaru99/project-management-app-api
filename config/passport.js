@@ -26,12 +26,12 @@ function (jwtPayload, cb) {
 passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
-    }, 
+    },
     async function (email, password, cb) {
         await user.findOne({ email })
            .then(async user => {
                if (!user) {
-                   return cb('Incorrect E-mail');
+                   return cb('Incorrect E-mail or Password');
                }
                 const validPassword = await bcrypt.compare(
                     password,
