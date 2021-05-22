@@ -44,21 +44,22 @@ components:
                   type: string
                 task_priority:
                   type: string
-                asignee:
-                  type: object
-                  properties:
-                owner:
-                  type: object
-                  properties:
                 users:
-                  type: object
-                  properties:
-                userRoles:
-                  type: object
-                  properties:
-                    role:
-                      type: string
-
+                  type: array
+                  items:
+                    type: object
+      owner:
+        type: array
+        items:
+          type: string
+          format: uuid
+      userRoles:
+        type: array
+        items:
+          type: object
+          properties:
+            role:
+              type: string
     User:
       type: object
       properties:
@@ -173,8 +174,10 @@ paths:
                   type: string
                 description:
                   type: string
-                user:
-                  type: string
+                owner:
+                  type: array
+                  items:
+                    type: string
                 completed:
                   type: boolean
                 columns:
@@ -218,6 +221,12 @@ paths:
           description: MongoDB Project ObjectId
           schema:
             type: string
+        - in: query
+          name: userId
+          reqired: true
+          schema:
+            type: string
+          description: Authorized user (User that exists in the project or the project owner)
       responses:
         200:
           description: A Project in the format of a JSON object.
@@ -240,6 +249,11 @@ paths:
           name: id
           required: true
           description: MongoDB Project ObjectId
+          schema:
+            type: string
+        - in: query
+          name: userId
+          reqiored: true
           schema:
             type: string
       requestBody:
@@ -268,6 +282,11 @@ paths:
           name: id
           required: true
           description: MongoDB Project ObjectId
+          schema:
+            type: string
+        - in: query
+          name: userId
+          reqiored: true
           schema:
             type: string
       responses:
@@ -341,6 +360,8 @@ paths:
                 properties:
                   col_name:
                     type: string
+                  userId:
+                    type: string
         responses:
           200:
             description: A Project in the format of a JSON object.
@@ -398,6 +419,11 @@ paths:
           name: id
           required: true
           description: MongoDB LIST ObjectId
+          schema:
+            type: string
+        - in: query
+          name: userId
+          reqiored: true
           schema:
             type: string
       responses:
@@ -503,6 +529,17 @@ paths:
             description: MongoDB Column ObjectId
             schema:
               type: string
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  projectId:
+                    type: string
         responses:
           200:
             description: A Project in the format of a JSON object.
