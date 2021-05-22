@@ -66,7 +66,8 @@ describe('/Test endpoints according to the user flow', () => {
             .put(`/api/projects/addcolumn/${project.body._id}`)
             .set("Authorization", `bearer ${userLogin.body.token}`)
             .send({
-                col_name: 'testColumn'
+                col_name: 'testColumn',
+                userId: userLogin.body.id
             })
         column.should.have.status(200);
         column.body.message.should.equal('Column was ADDED successfully!');
@@ -86,7 +87,7 @@ describe('/Test endpoints according to the user flow', () => {
 
     it('it should delete a project', async () => {
         deletedProject = await chai.request(server)
-            .delete(`/api/projects/${project.body._id}`)
+            .delete(`/api/projects/${project.body._id}?userId=${userLogin.body.id}`)
             .set({ 'Authorization': `bearer ${userLogin.body.token}` })
         deletedProject.should.have.status(200);
     })
