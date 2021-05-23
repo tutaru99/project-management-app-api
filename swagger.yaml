@@ -545,6 +545,15 @@ paths:
                     type: string
                   projectId:
                     type: string
+                  tasks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        task_name: 
+                          type: string
+                        task_description:
+                          type: string
         responses:
           200:
             description: A Project in the format of a JSON object.
