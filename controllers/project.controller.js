@@ -623,6 +623,9 @@ exports.deleteColumn = async (req, res) => {
                         });
                     } else res.send({ message: "column was deleted successfully!" + `${id}` });
                 })
+                .catch(err => {
+                    console.log(err);
+                })
         }).catch((err) => {
             console.log(err)
         })
