@@ -1,12 +1,12 @@
 const db = require("../models");
-const user = (project = db.users); /* WORKAROUND FOR NOW  - READ/WRITE  */
+const user = (project = db.users);
 const { registerValidation, loginValidation } = require("../validation.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 exports.create = async (req, res) => {
- 
+
   const { error } = registerValidation(req.body);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });

@@ -1,5 +1,5 @@
 const db = require("../models");
-const Project = project = db.projects;              /* WORKAROUND FOR NOW  - READ/WRITE  */
+const Project = project = db.projects;
 const ObjectId = require('mongodb').ObjectID;
 const mongoose = require("mongoose");
 
