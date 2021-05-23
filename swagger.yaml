@@ -223,7 +223,7 @@ paths:
             type: string
         - in: query
           name: userId
-          reqired: true
+          required: true
           schema:
             type: string
           description: Authorized user (User that exists in the project or the project owner)
@@ -286,7 +286,7 @@ paths:
             type: string
         - in: query
           name: userId
-          reqiored: true
+          required: true
           schema:
             type: string
       responses:
@@ -423,12 +423,12 @@ paths:
             type: string
         - in: query
           name: user
-          reqiored: true
+          required: true
           schema:
             type: string
         - in: query
           name: project
-          reqiored: true
+          required: true
           schema:
             type: string
       responses:
