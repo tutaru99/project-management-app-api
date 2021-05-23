@@ -253,7 +253,7 @@ paths:
             type: string
         - in: query
           name: userId
-          reqiored: true
+          required: true
           schema:
             type: string
       requestBody:
