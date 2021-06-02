@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
 require("dotenv").config();
+require("custom-env").env();
+require("custom-env").env("test");
 require("./config/passport.js");
 const authRoutes = require("./routes/auth.js");
 
