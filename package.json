@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "api": "nodemon server.js",
+    "api": "cross-env NODE_ENV=development nodemon server.js",
     "test": "mocha \"./**/*.test.js\" --exit"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "chai-http": "^4.3.0",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "joi": "^17.4.0",
