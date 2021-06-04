@@ -7,6 +7,7 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
+/* Test flow */
 describe("/POST register a user", () => {
   it("it should register a test user", async () => {
     await chai
@@ -29,6 +30,7 @@ var project;
 var column;
 var task;
 var deletedProject;
+
 describe("/Test endpoints according to the user flow", () => {
   it("it should login the registered test user", async () => {
     userLogin = await chai.request(server).post("/api/user/login").send({
